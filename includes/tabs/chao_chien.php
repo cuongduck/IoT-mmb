@@ -57,10 +57,20 @@ if (!isset($line)) {
                     </div>
                 </div>
             </div>
-
-            <div class="absolute left-[34%] top-[32%] bg-white/80 rounded px-0.5 md:px-1 py-0.5 md:py-1">
-                <div class="text-xs md:text-l font-bold text-red-500">
+  
+  <!-- Thời gian chien -->
+  
+            <div class="absolute left-[34%] top-[30%] bg-white/80 rounded px-0.5 md:px-1 py-0.5 md:py-1">
+                <div class="text-m md:text-l font-bold text-red-500">
                     <span id="<?= $line ?>-time-hap">0.0</span> S
+                </div>
+            </div>
+
+  <!-- Thời gian nguoi -->
+  
+            <div class="absolute right-[28%] top-[70%] bg-white/95 rounded px-0.5 md:px-1 py-0.5 md:py-1">
+                <div class="text-m md:text-l font-bold text-red-500">
+                    <span id="<?= $line ?>-time-nguoi">0.0</span> S
                 </div>
             </div>
 
@@ -81,7 +91,13 @@ if (!isset($line)) {
                     </div>
                 </div>
             </div>
-
+                 <!-- Thời gian chien -->
+                <div class="absolute left-[28%] top-[70.5%] bg-white/80 backdrop-blur rounded px-0.5 md:px-1 py-0.5 md:py-1">
+                <div class="text-m md:text-l font-bold text-red-600">
+                    <span id="<?= $line ?>-time-chien">0</span> S
+                </div>
+            </div>
+            
             <!-- Các tần số lưới -->
             <div class="absolute right-[42%] top-[10%] bg-white/80 rounded px-0.5 md:px-1 py-0.5 md:py-1">
                 <div class="text-xs md:text-l font-bold text-red-600">

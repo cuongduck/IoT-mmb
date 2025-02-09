@@ -17,7 +17,8 @@ $query = "SELECT
     {$line}_BTH, {$line}_QHD,{$line}_HAP,{$line}_SEA,{$line}_KG1,{$line}_KG2,
     {$line}_Silo1, {$line}_Silo2, {$line}_Kansui, {$line}_Time_Tron_Kho_1,
     {$line}_Time_Tron_uot_1, {$line}_Time_Tron_Kho_2, {$line}_Time_Tron_uot_2,
-    {$line}_nhiet_bll, {$line}_nhiet_bc, {$line}_water_sea_PV, {$line}_water_sea_SP, {$line}_water_ks_PV, {$line}_water_ks_SP, {$line}_Time_Hap
+    {$line}_nhiet_bll, {$line}_nhiet_bc, {$line}_water_sea_PV, {$line}_water_sea_SP, {$line}_water_ks_PV, {$line}_water_ks_SP, {$line}_Time_Hap,
+    {$line}_Time_Chien, {$line}_Time_Nguoi
 FROM Line_Status 
 WHERE ID = 1";
 

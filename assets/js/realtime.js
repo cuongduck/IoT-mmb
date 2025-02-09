@@ -254,10 +254,12 @@ async function updateRealtime(line) {
         updateValueWithAnimation(`${line}-hap-flow`, data[`${line}_Hap_Flow`], 700);
         updateValueWithAnimation(`${line}-time-hap`, data[`${line}_Time_Hap`], 300);
         
-        // Hệ thống chiên
+        // Hệ thống chiên - nguoi
         updateValueWithAnimation(`${line}-chien-temp`, data[`${line}_Chien_Temp`], 200);
         updateValueWithAnimation(`${line}-chien-pressure`, data[`${line}_Chien_Pressure`], 15);
         updateValueWithAnimation(`${line}-chien-flow`, data[`${line}_Chien_Flow`], 3000);
+        updateValueWithAnimation(`${line}-time-chien`, data[`${line}_Time_Chien`], 300);
+        updateValueWithAnimation(`${line}-time-nguoi`, data[`${line}_Time_Nguoi`], 300);
         
         // Các tần số
         updateValueWithAnimation(`${line}-tan-so-BTH`, data[`${line}_BTH`], 50);
