@@ -1,0 +1,499 @@
+.kansui-system * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.kansui-system .system-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1px; /* Giảm khoảng cách giữa các line */
+    padding: 10px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.kansui-system .line-container {
+    border: 1px solid #666;
+    border-radius: 5px;
+    padding: 20px 15px; /* Giảm padding */
+    position: relative;
+    margin: 15px 0;
+    background-color: #ffffff;  /* Màu nền trắng cho container */
+}
+
+.kansui-system .line-number {
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    background: white;
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+.kansui-system .container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.kansui-system .tank-system {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    max-width: 900px;  /* Thêm max-width */
+    width: 100%;       /* Đặt width 100% */
+    margin: 0 auto;    /* Margin auto để căn giữa */
+}
+
+.kansui-system .tank-unit {
+    position: relative;
+    width: 100px;
+}
+
+.kansui-system .tank {
+    position: relative;
+}
+
+.kansui-system .tank-name {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: -25px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.kansui-system .pipe-section {
+    position: relative;
+    flex: 1;
+    min-width: 150px;
+    max-width: 200px;
+    height: 250px;
+}
+
+/* Đường ống ngang */
+.kansui-system .pipe {
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, 
+        #007bff 0%,
+        #007bff 45%,
+        #ffffff 50%,
+        #007bff 55%,
+        #007bff 100%
+    );
+    position: absolute;
+    top: 70%;
+    overflow: hidden;
+}
+
+/* Đường ống dọc */
+.kansui-system .vertical-pipe {
+    position: absolute;
+    width: 8px;
+    height: 95px;
+    background: #007bff;
+    left: 30%;
+    top: -5%;
+    transform: translateX(-50%);
+}
+
+/* Van điều khiển */
+.kansui-system .valve {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    left: 50%;
+    top: 70%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background: linear-gradient(135deg, 
+        #666 50%, 
+        #444 50%
+    );
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.kansui-system .valve.open {
+    background: linear-gradient(135deg, 
+        #4CAF50 50%, 
+        #388E3C 50%
+    );
+}
+
+/* Nhãn dung tích */
+.kansui-system .capacity {
+    position: absolute;
+    top: -10px;
+    left: -30px;
+    background: #007bff;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+
+/* Thông số kỹ thuật */
+.kansui-system .specs {
+    position: absolute;
+    bottom: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(145deg, #2196F3, #1976D2); /* Gradient xanh dương công nghiệp */
+    color: #ffffff;
+    padding: 4px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 550;
+    text-align: center;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(33,150,243,0.3);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Thêm class mới cho hiển thị brick */
+.kansui-system .brick {
+    position: absolute;
+    bottom: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(145deg, #FF9800, #F57C00);
+    color: #ffffff;
+    padding: 4px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 550;
+    text-align: center;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(255,152,0,0.3);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+/* Style cho mũi tên */
+.kansui-system .arrow-pipe {
+    width: 60px;
+    height: 8px;
+    background: #007bff;
+    position: absolute;
+    top: 70%;
+}
+
+.kansui-system .arrow-left {
+    left: -5px;
+}
+
+.kansui-system .arrow-right {
+    right: 45px;
+}
+
+/* Container cho mũi tên */
+.kansui-system .arrow-container-left {
+    position: absolute;
+    left: -50px;
+    height: 100%;
+    width: 50px;
+}
+
+.kansui-system .arrow-container-right {
+    position: absolute;
+    right: -50px;
+    height: 100%;
+    width: 50px;
+}
+
+/* SVG Arrow style */
+.kansui-system .arrow {
+    width: 12px;
+    height: 20px;
+    position: absolute;
+    top: 71.5%;
+    transform: translateY(-50%);
+    fill: #007bff;
+}
+
+.kansui-system .arrow.left {
+    left: -18px;
+}
+
+.kansui-system .arrow.right {
+    right: 31px;
+}
+
+/* Animation dòng chảy */
+.kansui-system .pipe::after,
+.kansui-system .vertical-pipe::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255,255,255,0.8) 20%,
+        transparent 50%
+    );
+    animation: flowHorizontal 2s linear infinite;
+}
+
+.kansui-system .vertical-pipe::after {
+    background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(255,255,255,0.8) 20%,
+        transparent 50%
+    );
+    animation: flowVertical 2s linear infinite;
+}
+
+@keyframes flowHorizontal {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
+
+@keyframes flowVertical {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(100%); }
+}
+
+.kansui-system .line-label {
+    position: absolute;
+    top: 65%;
+    transform: translateY(-50%);
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.kansui-system .line-label.left {
+    left: -50px;
+}
+
+.kansui-system .line-label.right {
+    right: -10px;
+}
+/* Cooling System Styles */
+/* Container chính cho hệ thống đường ống làm lạnh */
+.kansui-system .cooling-system {
+    position: absolute;     /* Định vị tuyệt đối so với tank */
+    top: -50px;            /* Khoảng cách từ trên xuống */
+    right: -40px;          /* Khoảng cách từ phải sang */
+    width: 80px;           /* Chiều rộng tổng thể */
+    height: 50px;
+    
+}
+
+/* Container cho đường ống nóng màu cam */
+.kansui-system .cooling-pipe.cooling-in {
+    position: absolute;     /* Định vị tuyệt đối trong cooling-system */
+    left: 0;               /* Vị trí từ trái sang */
+}
+
+/* Phần đứng của đường ống nóng */
+.kansui-system .cooling-in .pipe-vertical {
+    position: absolute;
+    width: 6px;            /* Độ dày đường ống */
+    height: 110px;          /* Chiều cao đường dọc */
+    background: #FFCC33;   /* Màu cam của đường ống nóng */
+    top: 60px;
+    left: -105px;
+}
+
+/* Phần ngang của đường ống nóng */
+.kansui-system .cooling-in .pipe-horizontal {
+    position: absolute;
+    height: 6px;           /* Độ dày đường ống */
+    width: 50px;           /* Chiều dài đường ngang */
+    background: #FFCC33;   /* Màu cam */
+    top: 165px; 
+    left: -105px;
+}
+
+/* Container cho đường ống lạnh màu xanh */
+.kansui-system .cooling-pipe.cooling-out {
+    position: absolute;
+    right: 0;              /* Vị trí từ phải sang */
+}
+
+/* Phần đứng của đường ống lạnh */
+.kansui-system .cooling-out .pipe-vertical {
+    position: absolute;
+    top: 60px; 
+    width: 6px;            /* Độ dày đường ống */
+    height: 85px;          /* Chiều cao đường dọc - ngắn hơn ống nóng */
+    background: #0066cc;   /* Màu xanh của đường ống lạnh */
+    left: -165px;
+}
+
+/* Phần ngang của đường ống lạnh */
+.kansui-system .cooling-out .pipe-horizontal {
+    position: absolute;
+    height: 6px;           /* Độ dày đường ống */
+    width: 50px;           /* Chiều dài đường ngang */
+    background: #0066cc;   /* Màu xanh */
+    top: 145px;
+    left: -185px;
+}
+/* style van */
+.kansui-system .van-chuyen-bon {
+    position: absolute;
+    top: 157px; 
+    left: 85px;
+}
+/* Style chung cho mũi tên */
+.kansui-system .arrow-up {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;    /* Tạo hình tam giác */
+    border-right: 8px solid transparent;
+     top: 205px;
+    left: -120px;
+}
+/* Mũi tên cam cho đường ống nóng */
+.kansui-system .arrow-up.orange {
+    border-bottom: 10px solid #FFCC33;      /* Chiều cao và màu mũi tên */
+    top: 163px;
+    left: -120px;
+    transform: rotate(-90deg);
+}
+
+/* Mũi tên xanh cho đường ống lạnh */
+.kansui-system .arrow-up.blue {
+    border-bottom: 10px solid #0066cc;  /* Giữ nguyên border */
+    top: 143px;
+    left: -197px;
+    transform: rotate(90deg);         /* Xoay 180 độ */
+
+
+}
+/* Animation cho đường ống nóng - chảy ra */
+.kansui-system .cooling-in .pipe-vertical::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top,
+        transparent 0%,
+        rgba(255,255,255,0.6) 20%,
+        transparent 50%
+    );
+    animation: flowUp 2s linear infinite;
+}
+
+.kansui-system .cooling-in .pipe-horizontal::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255,255,255,0.6) 20%,
+        transparent 30%
+    );
+    animation: flowLeft 2s linear infinite;
+}
+
+/* Animation cho đường ống lạnh - chảy vào */
+.kansui-system .cooling-out .pipe-vertical::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(255,255,255,0.6) 20%,
+        transparent 50%
+    );
+    animation: flowDown 2s linear infinite;
+}
+
+.kansui-system .cooling-out .pipe-horizontal::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255,255,255,0.6) 20%,
+        transparent 30%
+    );
+    animation: flowRight 2s linear infinite;
+}
+
+/* Keyframes cho các animation */
+@keyframes flowUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(-100%); }
+}
+
+@keyframes flowDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(100%); }
+}
+
+@keyframes flowRight {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
+
+@keyframes flowLeft {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+}
+/* phần css cho van */
+
+
+
+/* Animation pulses cho vòng van */
+.kansui-system .valve-ring {
+    animation: pulsing 2s ease-in-out infinite;
+}
+
+/* Animation vẫn giữ nguyên vì nó là global */
+@keyframes rotateHandle {
+    0% {
+        transform-origin: center;
+        transform: rotate(0deg);
+    }
+    100% {
+        transform-origin: center;
+        transform: rotate(90deg);
+    }
+}
+
+@keyframes pulsing {
+    0% {
+        stroke-width: 2;
+        stroke-opacity: 1;
+    }
+    50% {
+        stroke-width: 3;
+        stroke-opacity: 0.8;
+    }
+    100% {
+        stroke-width: 2;
+        stroke-opacity: 1;
+    }
+}
+
+/* Animation cho hover state */
+.kansui-system .valve-svg:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Thêm bóng đổ */
+.kansui-system .valve-body {
+    filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2));
+}

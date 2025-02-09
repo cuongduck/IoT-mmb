@@ -1,0 +1,420 @@
+/* Main Styles */
+body {
+    background-color: #f7f8fa;
+}
+
+/* Card Styles */
+.card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+}
+
+/* Button Styles */
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    border: 1px solid #e2e8f0;
+}
+
+.btn.active {
+    background-color: #3b82f6;
+    color: white;
+}
+
+/* Status Indicators */
+.status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.status.running {
+    background-color: #10b981;
+    color: white;
+}
+
+.status.stopped {
+    background-color: #ef4444;
+    color: white;
+}
+
+/* Chart Container */
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+/* Responsive Grid */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .card {
+        padding: 1rem;
+    }
+}
+/* Overview Cards Styles */
+.overview-card {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.overview-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.overview-card h3 {
+    color: #4a5568;
+    margin-bottom: 0.5rem;
+}
+
+.overview-card .value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2d3748;
+}
+
+.overview-card .label {
+    color: #718096;
+    font-size: 0.875rem;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .overview-card {
+        padding: 1rem;
+    }
+    
+    .overview-card .value {
+        font-size: 1.5rem;
+    }
+}
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 400px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .chart-container {
+        height: 300px;
+    }
+}
+
+/* Thêm vào style.css */
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status-badge.running {
+    background-color: #10b981;
+    color: white;
+}
+
+.status-badge.stopped {
+    background-color: #ef4444;
+    color: white;
+}
+
+/* Hiệu ứng hover cho nút chi tiết */
+.bg-blue-500 {
+    background-color: #0066ff;
+}
+
+.bg-blue-500:hover {
+    background-color: #0052cc;
+}
+#realtimeModal {
+    transition: all 0.3s ease-in-out;
+}
+
+#realtimeModal:not(.hidden) {
+    animation: modalFadeIn 0.3s ease-in-out;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Thêm vào style.css */
+@keyframes temperatureColorChange {
+    0% {
+        color: #ef4444; /* red-500 */
+    }
+    50% {
+        color: #f97316; /* orange-500 */
+    }
+    100% {
+        color: #007bff; /* red-500 */
+    }
+}
+
+.temperature-value {
+    animation: temperatureColorChange 2s infinite;
+}
+
+.temperature-value.updated {
+    animation: none;
+    color: #ef4444;
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Thêm hover effect cho giá trị */
+.temperature-value:hover {
+    transform: scale(1.1);
+}
+
+/* css cho tab realtime */
+/* Thêm style mới */
+.tab-button {
+    background-color: #073480; /* Màu xanh tím than */
+    color: white;
+}
+
+.tab-button:hover {
+    background-color: #334155;
+}
+
+.tab-button.active {
+    background-color: white;
+    color: #073480;
+    border: 2px solid #073480;
+}
+
+/* Điều chỉnh màu icon trong button */
+.tab-button svg {
+    color: currentColor;
+}
+
+.progress-bar {
+    width: 0%; /* Đặt mặc định là 0% */
+    transition: width 0.3s ease-in-out;
+}
+
+.value-update {
+    animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+#realtimeContainer {
+    transition: all 0.3s ease-in-out;
+}
+
+#realtimeContainer:not(.hidden) {
+    animation: slideDown 0.3s ease-in-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Thêm vào file style.css */
+.header-main {
+    position: fixed; /* Thêm dòng này */
+    top: 0; /* Thêm dòng này */
+    left: 0; /* Thêm dòng này */
+    right: 0; /* Thêm dòng này */
+    z-index: 1000; /* Thêm dòng này */
+    background-color: #003876;
+    color: white;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: 60px; /* Thêm chiều cao cố định */
+}
+
+.header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.sub-header {
+    position: fixed; /* Thêm dòng này */
+    top: 60px; /* Thêm dòng này - 64px là chiều cao của header-main (1rem padding * 2 + nội dung) */
+    left: 0; /* Thêm dòng này */
+    right: 0; /* Thêm dòng này */
+    z-index: 999; /* Thêm dòng này */
+    background-color: #F5F8FC;
+    border-bottom: 1px solid #E5EBF4;
+    padding: 0.75rem 1rem;
+    height: 50px; /* Thêm chiều cao cố định */
+}
+
+.factory-title {
+    color: #003876;
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+.date-filter .btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.date-filter .btn.active {
+    background-color: #0055B4;
+    color: white;
+    border: none;
+}
+
+.date-filter .btn:not(.active) {
+    background-color: white;
+    color: #0055B4;
+    border: 1px solid #0055B4;
+}
+
+.date-filter .btn:hover {
+    background-color: #003876;
+    color: white;
+}
+
+.logout-btn {
+    background-color: white;
+    color: #003876;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.logout-btn:hover {
+    background-color: #f3f4f6;
+}
+/* Thêm mới phần này */
+.container.mx-auto {
+    margin-top: 110px; /* Tổng của height header-main (60px) + height sub-header (50px) */
+    position: relative;
+    z-index: 1;
+}
+
+/* Thêm mới phần này để đảm bảo z-index cho các phần tử khác */
+.card, 
+#realtimeContainer,
+.grid {
+    position: relative;
+    z-index: 1;
+}
+
+/* Thêm mới phần này để xử lý responsive */
+@media (max-width: 768px) {
+    .container.mx-auto {
+        padding-top: 120px; /* Điều chỉnh cho mobile */
+    }
+}
+/* Thêm style cho các nút factory */
+.factory-nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.factory-btn {
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.375rem;
+    font-weight: 400;
+    text-decoration: none;
+    transition: all 0.2s;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+}
+
+.factory-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.factory-btn.active {
+    background-color: white;
+    color: #003876;
+}
+
+/* Điều chỉnh responsive */
+@media (max-width: 768px) {
+    .factory-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Điều chỉnh responsive */
+.table-container {
+    position: relative;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+/* Styles mới cho bảng downtime */
+.table-container .table-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #4472C4 !important; /* Đảm bảo màu nền luôn hiển thị */
+}
+
+.table-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+/* Styles cho use */
+.user-btn {
+    padding: 0.5rem;
+    color: white;
+    cursor: pointer;
+}
+
+.user-menu {
+    z-index: 50;
+    border: 1px solid #e2e8f0;
+}
+
+.user-menu a {
+    transition: all 0.2s;
+}

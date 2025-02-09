@@ -1,0 +1,11 @@
+# Deny access to database config
+<Files "/config/database.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Protect sessions directory
+<Files "sess_*">
+    Order Allow,Deny
+    Deny from all
+</Files>
