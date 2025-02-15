@@ -1,31 +1,59 @@
 <?php
+header('Content-Type: application/json');
 require_once '../config/database.php';
 require_once '../includes/functions.php';
-header('Content-Type: application/json');
 
-$line = isset($_GET['line']) ? $_GET['line'] : 'L5';
 $period = isset($_GET['period']) ? $_GET['period'] : 'today';
-$dateRangeQuery = getDateRangeQuery($period);
+$line = isset($_GET['line']) ? $_GET['line'] : null;
 
-$sql = "SELECT Date, Ten_Loi, Thoi_Gian_Dung, Ghi_Chu 
-        FROM Downtime 
-        WHERE Line = ? AND " . substr($dateRangeQuery, 6) . 
-        " ORDER BY Date DESC";
+try {
+    // Lấy điều kiện thời gian từ functions.php 
+    $originalDateRangeQuery = getDateRangeQuery($period);
+    $dateRangeQuery = str_replace('Time', 'Date', $originalDateRangeQuery);
 
-$stmt = $conn->prepare($sql);
-$stmt->bind_param('s', $line);
-$stmt->execute();
-$result = $stmt->get_result();
+    // Debug: In ra câu query để kiểm tra
+    error_log("Date Range Query: " . $dateRangeQuery);
 
-$data = [];
-while($row = $result->fetch_assoc()) {
-    $data[] = [
-        'time' => $row['Date'],
-        'error' => $row['Ten_Loi'],
-        'duration' => $row['Thoi_Gian_Dung'],
-        'note' => $row['Ghi_Chu']
-    ];
+    $query = "SELECT 
+        Ten_Loi as ErrorName,
+        SUM(Thoi_Gian_Dung) as Duration,
+        GROUP_CONCAT(Ghi_Chu SEPARATOR '; ') as Details
+    FROM Downtime 
+    WHERE Line = ? AND " . substr($dateRangeQuery, 6) . "
+    GROUP BY Ten_Loi
+    ORDER BY Duration DESC";
+
+    // Debug: In ra câu query hoàn chỉnh
+    error_log("Full Query: " . $query);
+
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $line);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if (!$result) {
+        throw new Exception($conn->error);
+    }
+
+    $data = [];
+    while ($row = $result->fetch_assoc()) {
+        $data[] = [
+            'name' => $row['ErrorName'],
+            'value' => floatval($row['Duration']),
+            'details' => $row['Details']
+        ];
+    }
+
+    // Debug: In ra kết quả
+    error_log("Query Result: " . json_encode($data));
+
+    echo json_encode($data);
+
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode([
+        'error' => true,
+        'message' => $e->getMessage()
+    ]);
 }
-
-echo json_encode($data);
 ?>

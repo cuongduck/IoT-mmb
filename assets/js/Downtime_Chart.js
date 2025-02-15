@@ -64,7 +64,7 @@ async function updateDowntimeChart(period) {
                    y: {
                        stacked: true,
                        beginAtZero: true,
-                       suggestedMax: Math.ceil(totalDowntime + 8),
+                       suggestedMax: Math.ceil(totalDowntime + 15),
                        grid: {
                            color: 'rgba(0, 0, 0, 0.1)'
                        },

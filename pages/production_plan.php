@@ -1,179 +1,170 @@
 <?php
 require_once 'config/database.php';
-
-// Xử lý xóa
-if (isset($_POST['delete']) && isset($_POST['id'])) {
-    $id = $_POST['id'];
-    $stmt = $conn->prepare("DELETE FROM KHSX WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    
-    if ($stmt->execute()) {
-        echo '<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <span class="block sm:inline">Xóa thành công!</span>
-            </div>';
-    } else {
-        echo '<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <span class="block sm:inline">Có lỗi khi xóa!</span>
-            </div>';
-    }
-}
-
-// Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['delete'])) {
-    if (isset($_POST['action'])) {
-        $line = $_POST['Line'];
-        $ten_sp = $_POST['Ten_sp'];
-        $tu_ngay = $_POST['Tu_ngay'];
-        $den_ngay = $_POST['den_ngay'];
-        
-        if ($_POST['action'] == 'add') {
-            $sql = "INSERT INTO KHSX (Line, Ten_sp, Tu_ngay, den_ngay) VALUES (?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ssss", $line, $ten_sp, $tu_ngay, $den_ngay);
-        } else if ($_POST['action'] == 'edit' && isset($_POST['id'])) {
-            $id = $_POST['id'];
-            $sql = "UPDATE KHSX SET Line=?, Ten_sp=?, Tu_ngay=?, den_ngay=? WHERE id=?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ssssi", $line, $ten_sp, $tu_ngay, $den_ngay, $id);
-        }
-        
-        if ($stmt->execute()) {
-            echo '<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
-                    <span class="block sm:inline">Thao tác thành công!</span>
-                </div>';
-        } else {
-            echo '<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-                    <span class="block sm:inline">Có lỗi xảy ra!</span>
-                </div>';
-        }
-    }
-}
-
-// Fetch existing record if editing
-$editData = null;
-if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
-    $id = $_GET['edit'];
-    $stmt = $conn->prepare("SELECT * FROM KHSX WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $editData = $result->fetch_assoc();
-}
 ?>
 
-<!-- Script xác nhận xóa -->
-<script>
-function confirmDelete(id) {
-    if (confirm('Bạn có chắc chắn muốn xóa kế hoạch này không?')) {
-        document.getElementById('delete-form-' + id).submit();
-    }
-}
-</script>
-
-<div class="container mx-auto p-4">
-    <div class="bg-white rounded-lg shadow-md p-6 max-w-2xl mx-auto">
-        <h2 class="text-2xl font-bold mb-6 text-gray-800">
-            <?php echo $editData ? 'Sửa Kế Hoạch Sản Xuất' : 'Thêm Kế Hoạch Sản Xuất'; ?>
-        </h2>
-
-        <form method="POST" class="space-y-4">
-            <?php if ($editData) { ?>
-                <input type="hidden" name="id" value="<?php echo $editData['id']; ?>">
-            <?php } ?>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label for="Line" class="block text-sm font-medium text-gray-700 mb-1">Line</label>
-                    <select name="Line" id="Line" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
-                        <?php
-                        $lines = ['Line 1', 'Line 2', 'Line 3', 'Line 4', 'Line 5', 'Line 6', 'Line 7', 'Line 8'];
-                        foreach ($lines as $line) {
-                            $selected = ($editData && $editData['Line'] == $line) ? 'selected' : '';
-                            echo "<option value='$line' $selected>$line</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="Ten_sp" class="block text-sm font-medium text-gray-700 mb-1">Tên sản phẩm</label>
-                    <input type="text" name="Ten_sp" id="Ten_sp" required 
-                           value="<?php echo $editData ? htmlspecialchars($editData['Ten_sp']) : ''; ?>"
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
-                </div>
-
-                <div>
-                    <label for="Tu_ngay" class="block text-sm font-medium text-gray-700 mb-1">Từ ngày</label>
-                    <input type="datetime-local" name="Tu_ngay" id="Tu_ngay" required
-                           value="<?php echo $editData ? date('Y-m-d\TH:i', strtotime($editData['Tu_ngay'])) : ''; ?>"
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
-                </div>
-
-                <div>
-                    <label for="den_ngay" class="block text-sm font-medium text-gray-700 mb-1">Đến ngày</label>
-                    <input type="datetime-local" name="den_ngay" id="den_ngay" required
-                           value="<?php echo $editData ? date('Y-m-d\TH:i', strtotime($editData['den_ngay'])) : ''; ?>"
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
-                </div>
-            </div>
-
-            <div class="flex justify-end space-x-3 mt-6">
-                <input type="hidden" name="action" value="<?php echo $editData ? 'edit' : 'add'; ?>">
-                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                    <?php echo $editData ? 'Cập nhật' : 'Thêm mới'; ?>
-                </button>
-                <?php if ($editData) { ?>
-                    <a href="?page=production_plan" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
-                        Hủy
-                    </a>
-                <?php } ?>
-            </div>
-        </form>
-    </div>
-
-    <!-- Display existing records -->
-    <div class="mt-8 bg-white rounded-lg shadow-md overflow-hidden">
-        <h3 class="text-xl font-bold p-4 bg-gray-50 border-b">Danh sách kế hoạch sản xuất</h3>
-        <div class="overflow-x-auto">
-            <table class="min-w-full">
-                <thead class="bg-gray-50">
-                    <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Line</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tên SP</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Từ ngày</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Đến ngày</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                    <?php
-                    $sql = "SELECT * FROM KHSX ORDER BY ID ASC";
-                    $result = $conn->query($sql);
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kế Hoạch Sản Xuất</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center mb-8">Kế Hoạch Sản Xuất</h1>
+        
+        <div class="space-y-4">
+            <?php
+            $lines = ['Line 1', 'Line 2', 'Line 3', 'Line 4', 'Line 5', 'Line 6', 'Line 7', 'Line 8'];
+            foreach ($lines as $line) {
+                $query = "SELECT * FROM KHSX WHERE Line = ? ORDER BY Tu_ngay DESC LIMIT 1";
+                $stmt = $conn->prepare($query);
+                $stmt->bind_param("s", $line);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $plan = $result->fetch_assoc();
+                
+                // Xác định trạng thái
+                $status = 'bg-yellow-500'; // pending
+                $statusText = 'Chưa bắt đầu';
+                if ($plan) {
+                    $now = new DateTime();
+                    $start = new DateTime($plan['Tu_ngay']);
+                    $end = new DateTime($plan['den_ngay']);
                     
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>
-                                <td class='px-6 py-4 whitespace-nowrap'>{$row['Line']}</td>
-                                <td class='px-6 py-4 whitespace-nowrap'>{$row['Ten_sp']}</td>
-                                <td class='px-6 py-4 whitespace-nowrap'>" . date('d/m/Y H:i', strtotime($row['Tu_ngay'])) . "</td>
-                                <td class='px-6 py-4 whitespace-nowrap'>" . date('d/m/Y H:i', strtotime($row['den_ngay'])) . "</td>
-                                <td class='px-6 py-4 whitespace-nowrap space-x-2'>
-                                    <a href='?page=production_plan&edit={$row['id']}' 
-                                       class='text-blue-600 hover:text-blue-900 mr-2'>Sửa</a>
-                                    <form id='delete-form-{$row['id']}' method='POST' class='inline'>
-                                        <input type='hidden' name='id' value='{$row['id']}'>
-                                        <input type='hidden' name='delete' value='1'>
-                                        <button type='button' 
-                                                onclick='confirmDelete({$row['id']})' 
-                                                class='text-red-600 hover:text-red-900'>
-                                            Xóa
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>";
+                    if ($now > $end) {
+                        $status = 'bg-gray-500';
+                        $statusText = 'Đã hoàn thành';
+                    } elseif ($now >= $start && $now <= $end) {
+                        $status = 'bg-green-500';
+                        $statusText = 'Đang sản xuất';
                     }
-                    ?>
-                </tbody>
-            </table>
+                }
+            ?>
+            <div class="bg-white rounded-lg shadow-md p-6" 
+     data-id="<?php echo $plan ? $plan['id'] : ''; ?>"
+     data-start-time="<?php echo $plan ? date('Y-m-d H:i:s', strtotime($plan['Tu_ngay'])) : ''; ?>"
+     data-end-time="<?php echo $plan ? date('Y-m-d H:i:s', strtotime($plan['den_ngay'])) : ''; ?>"
+     id="plan-<?php echo $line; ?>">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-bold text-lg"><?php echo $line; ?></span>
+                        <div class="<?php echo $status; ?> w-3 h-3 rounded-full" title="<?php echo $statusText; ?>"></div>
+                    </div>
+                    <button onclick="editPlan('<?php echo $line; ?>')" 
+                            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">
+                        Chỉnh sửa
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                    <div>
+                        <span class="font-semibold">Sản phẩm:</span>
+                        <span id="product-<?php echo $line; ?>" class="ml-2">
+                            <?php echo $plan ? htmlspecialchars($plan['Ten_sp']) : 'Chưa có kế hoạch'; ?>
+                        </span>
+                    </div>
+                    <div>
+                        <span class="font-semibold">Sản lượng:</span>
+                        <span id="quantity-<?php echo $line; ?>" class="ml-2">
+                            <?php echo $plan ? number_format($plan['San_luong'], 2) : '0'; ?> Gói
+                        </span>
+                    </div>
+                    <div>
+                        <span class="font-semibold">Thời gian:</span>
+                        <span id="time-<?php echo $line; ?>" class="ml-2">
+                            <?php 
+                            if ($plan) {
+                                echo date('H:i d/m/Y', strtotime($plan['Tu_ngay'])) . ' - ' . 
+                                     date('H:i d/m/Y', strtotime($plan['den_ngay']));
+                            } else {
+                                echo 'N/A';
+                            }
+                            ?>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Timeline container -->
+                <div id="timeline-<?php echo $line; ?>" class="mt-4"></div>
+            </div>
+            <?php } ?>
         </div>
     </div>
-</div>
+
+    <!-- Modal -->
+    <div id="editModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white z-[51]">
+            <div class="mt-3">
+                <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Chỉnh Sửa Kế Hoạch</h3>
+                <form id="editForm" class="space-y-4">
+                    <input type="hidden" id="line_number" name="Line">
+                    <input type="hidden" id="plan_id" name="id">
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Tên sản phẩm</label>
+                        <input type="text" id="product_name" name="Ten_sp" 
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Sản lượng (Gói)</label>
+                        <input type="number" step="0.01" id="quantity" name="San_luong" 
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Thời gian bắt đầu</label>
+                        <input type="datetime-local" id="start_time" name="Tu_ngay" 
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Thời gian kết thúc</label>
+                        <input type="datetime-local" id="end_time" name="den_ngay" 
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                    </div>
+                    
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" onclick="closeModal()" 
+                                class="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300 transition-colors">
+                            Đóng
+                        </button>
+                        <button type="button" onclick="savePlan()" 
+                                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">
+                            Lưu
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timeline Script -->
+    <script src="assets/js/timeline.js?v=<?php echo time(); ?>"></script>
+<!-- Khởi tạo timeline -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        <?php
+        // Reset con trỏ kết quả về đầu
+        mysqli_data_seek($result, 0);
+        foreach ($lines as $line) {
+            $query = "SELECT * FROM KHSX WHERE Line = ? ORDER BY Tu_ngay DESC LIMIT 1";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("s", $line);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $plan = $result->fetch_assoc();
+        ?>
+            initializeTimeline('<?php echo $line; ?>', <?php echo json_encode($plan); ?>);
+        <?php } ?>
+    });
+    </script>
+
+    <!-- Modal Functions -->
+    <script src="assets/js/modal.js?v=<?php echo time(); ?>"></script>
+</body>
+</html>

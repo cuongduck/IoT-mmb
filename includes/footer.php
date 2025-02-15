@@ -14,6 +14,7 @@
     <script src="assets/js/Power_Table.js?v=<?php echo time(); ?>"></script>
     <script src="assets/js/Steam_table.js?v=<?php echo time(); ?>"></script>
     <script src="assets/js/Weight_table.js?v=<?php echo time(); ?>"></script>
+
     <!-- Load main.js last -->
         <script src="assets/js/charts.js?v=<?php echo time(); ?>"></script>
     <script src="assets/js/Main.js?v=<?php echo time(); ?>"></script>

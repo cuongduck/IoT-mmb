@@ -40,22 +40,30 @@ if (!in_array($line, $validLines)) {
     <!-- Charts -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <div class="card">
-            <h3 class="text-lg font-semibold mb-4">OEE</h3>
+            <h3 class="text-lg font-semibold mb-4">OEE <?php echo $line; ?></h3>
             <div class="chart-container" style="height: 300px;">
                 <canvas id="lineOEEChart"></canvas>
             </div>
         </div>
         <div class="card">
-            <h3 class="text-lg font-semibold mb-4">Tiêu hao hơi</h3>
+            <h3 class="text-lg font-semibold mb-4">Tiêu hao hơi <?php echo $line; ?></h3>
             <div class="chart-container" style="height: 300px;">
                 <canvas id="lineSteamChart"></canvas>
             </div>
         </div>
     </div>
 
+<!-- Line Downtime Chart -->
+<div class="card mt-6">
+    <h3 class="text-lg font-semibold mb-4">Biểu đồ Downtime <?php echo $line; ?></h3>
+    <div class="chart-container" style="height: 390px;">
+        <canvas id="lineDowntimeChart"></canvas>
+    </div>
+</div>
+
     <!-- Line trend chart -->
     <div class="card mt-6">
-        <h3 class="text-lg font-semibold mb-4">Biểu đồ Trend TLTB - Nhiệt cuối - Hơi chiên</h3>
+        <h3 class="text-lg font-semibold mb-4">Biểu đồ Trend TLTB - Nhiệt cuối - Hơi chiên </h3>
         <div class="chart-container" style="height: 300px;">
             <canvas id="lineTrendChart"></canvas>
         </div>
@@ -133,6 +141,7 @@ if (!in_array($line, $validLines)) {
 <!-- Load Scripts -->
 <script src="assets/js/line_details_oee_chart.js?v=<?php echo time(); ?>"></script>
 <script src="assets/js/line_details_steam_chart.js?v=<?php echo time(); ?>"></script>
+<script src="assets/js/line_details_downtime_chart.js?v=<?php echo time(); ?>"></script>
 <script src="assets/js/line_details_trend_chart.js?v=<?php echo time(); ?>"></script>
 <script src="assets/js/line_details_mixing_table.js?v=<?php echo time(); ?>"></script>
 <script src="assets/js/line_details.js?v=<?php echo time(); ?>"></script>
