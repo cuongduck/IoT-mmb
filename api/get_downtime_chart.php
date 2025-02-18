@@ -6,15 +6,11 @@ require_once '../includes/functions.php';
 $period = isset($_GET['period']) ? $_GET['period'] : 'today';
 
 try {
-    // Điều chỉnh điều kiện thời gian từ functions.php 
-    // Thay thế 'Time' bằng 'Date' trong câu query
     $originalDateRangeQuery = getDateRangeQuery($period);
     $dateRangeQuery = str_replace('Time', 'Date', $originalDateRangeQuery);
 
-    // Debug: In ra câu query để kiểm tra
-    error_log("Date Range Query: " . $dateRangeQuery);
-
-    $query = "SELECT 
+    // Query chính cho total F3
+    $mainQuery = "SELECT 
         Ten_Loi as ErrorName,
         SUM(Thoi_Gian_Dung) as Duration,
         GROUP_CONCAT(Ghi_Chu SEPARATOR '; ') as Details
@@ -23,26 +19,45 @@ try {
     GROUP BY Ten_Loi
     ORDER BY Duration DESC";
 
-    // Debug: In ra câu query hoàn chỉnh
-    error_log("Full Query: " . $query);
+    // Query phụ để lấy thông tin line
+    $lineQuery = "SELECT 
+        Line,
+        COUNT(*) as StopCount,
+        SUM(Thoi_Gian_Dung) as TotalDuration
+    FROM Downtime 
+    $dateRangeQuery
+    GROUP BY Line
+    ORDER BY Line";
 
-    $result = $conn->query($query);
+    $mainResult = $conn->query($mainQuery);
+    $lineResult = $conn->query($lineQuery);
     
-    if (!$result) {
+    if (!$mainResult || !$lineResult) {
         throw new Exception($conn->error);
     }
 
-    $data = [];
-    while ($row = $result->fetch_assoc()) {
-        $data[] = [
+    $data = [
+        'totalF3' => [],
+        'lineData' => []
+    ];
+
+    // Xử lý data cho total F3
+    while ($row = $mainResult->fetch_assoc()) {
+        $data['totalF3'][] = [
             'name' => $row['ErrorName'],
             'value' => floatval($row['Duration']),
             'details' => $row['Details']
         ];
     }
 
-    // Debug: In ra kết quả
-    error_log("Query Result: " . json_encode($data));
+    // Xử lý data cho line
+    while ($row = $lineResult->fetch_assoc()) {
+        $data['lineData'][] = [
+            'line' => $row['Line'],
+            'stopCount' => intval($row['StopCount']),
+            'duration' => floatval($row['TotalDuration'])
+        ];
+    }
 
     echo json_encode($data);
 

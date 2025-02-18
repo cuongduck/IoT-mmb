@@ -11,8 +11,7 @@ try {
     $originalDateRangeQuery = getDateRangeQuery($period);
     $dateRangeQuery = str_replace('Time', 'Date', $originalDateRangeQuery);
 
-    // Debug: In ra câu query để kiểm tra
-    error_log("Date Range Query: " . $dateRangeQuery);
+
 
     $query = "SELECT 
         Ten_Loi as ErrorName,
@@ -23,8 +22,7 @@ try {
     GROUP BY Ten_Loi
     ORDER BY Duration DESC";
 
-    // Debug: In ra câu query hoàn chỉnh
-    error_log("Full Query: " . $query);
+
 
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $line);
@@ -44,8 +42,7 @@ try {
         ];
     }
 
-    // Debug: In ra kết quả
-    error_log("Query Result: " . json_encode($data));
+
 
     echo json_encode($data);
 
