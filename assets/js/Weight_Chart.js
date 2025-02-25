@@ -149,21 +149,35 @@ async function updateWeightChart(type = '5min') {
                         }
                     },
                     plugins: {
-                        datalabels: {
-                            color: '#000',
-                            anchor: 'center',
-                            align: 'center',
-                            formatter: function(value) {
-                                return value.toFixed(1) + 'g';
-                            },
-                            font: {
-                                weight: 'bold',
-                                size: 11
-                            },
-                            display: function(context) {
-                                return context.dataset.data[context.dataIndex] > 0;
-                            }
-                        },
+    datalabels: {
+        color: function(context) {
+            const value = context.dataset.data[context.dataIndex];
+            const lineNumber = context.chart.data.labels[context.dataIndex].replace('Line ', 'L');
+            const target = targets[lineNumber];
+            const diff = value - target;
+            // Nếu nhỏ hơn 0 thì màu 1 lơn hơn thì mầu 2
+            return diff < 0 ? '#16a34a' : '#ff0000';
+        },
+        // Thay đổi vị trí của label
+        anchor: 'end',    // Đặt điểm neo ở cuối cột (đỉnh cột)
+        align: 'bottom',  // Căn chỉnh phía dưới của label
+        offset: -30,        // Khoảng cách 5px từ đỉnh cột
+        formatter: function(value, context) {
+            const lineNumber = context.chart.data.labels[context.dataIndex].replace('Line ', 'L');
+            const target = targets[lineNumber];
+            const diff = value - target;
+            // Định dạng chênh lệch: thêm dấu + cho số dương
+            const diffText = diff > 0 ? `+${diff.toFixed(1)}` : diff.toFixed(1);
+            return value > 0 ? `${value.toFixed(1)}g\n(${diffText})` : '';
+        },
+        font: {
+            weight: 'bold',
+            size: 11
+        },
+        display: function(context) {
+            return context.dataset.data[context.dataIndex] > 0;
+        }
+    },
                         annotation: {
                             annotations: {
                                 l5Target: {
