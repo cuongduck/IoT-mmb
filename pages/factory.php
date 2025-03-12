@@ -447,11 +447,15 @@
                     <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L2_Hấp</th>
                     <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L2_Chiên</th>
                     <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L3_Hấp</th>
+                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L3_Chiên</th>
                     <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L5_Hấp</th>
                     <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L5_Chiên</th>
                     <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L6_Hấp</th>
                     <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L6_Chiên</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Tổng_F3</th>
+                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Trí_Việt</th>
+                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Mắm</th>
+                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Tổng_F2</th>
+                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Cl_F2</th>
                 </tr>
             </thead>
             <tbody id="steamTableContent">
