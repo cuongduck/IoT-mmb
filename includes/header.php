@@ -20,15 +20,13 @@
 </head>
 <body>
     <!-- Main Header -->
-<!-- Thay đổi phần header-main trong header.php -->
-<!-- Chỉnh sửa phần header-main trong header.php -->
 <div class="header-main">
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center gap-3">
                 <div class="factory-nav">
-                    <a href="index.php" class="factory-btn <?php echo !isset($_GET['page']) || $_GET['page'] == 'factory' ? 'active' : ''; ?>">Mì_F3</a>
-                    <a href="pages/factory_F2.php" class="factory-btn">Mì_F2</a>
+                    <a href="index.php?factory=F3" class="factory-btn <?php echo (!isset($_GET['factory']) || $_GET['factory'] == 'F3') ? 'active' : ''; ?>">Mì_F3</a>
+                    <a href="index.php?factory=F2" class="factory-btn <?php echo isset($_GET['factory']) && $_GET['factory'] == 'F2' ? 'active' : ''; ?>">Mì_F2</a>
                     <?php if (isAdmin()): ?>
                     <a href="index.php?page=production_plan" class="factory-btn <?php echo isset($_GET['page']) && $_GET['page'] == 'production_plan' ? 'active' : ''; ?>">KHSX</a>
                     <?php endif; ?>
@@ -43,7 +41,7 @@
                         </svg>
                     </button>
                     <div id="userMenu" class="user-menu hidden absolute right-0 mt-2 w-48 bg-white rounded shadow-lg">
-                                               <a href="logout.php" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                        <a href="logout.php" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                             Thoát
                         </a>
                     </div>

@@ -14,7 +14,8 @@ try {
     // Loại bỏ 'WHERE' từ câu điều kiện vì đã có trong query chính
     $dateRangeQuery = str_replace('WHERE', 'AND', $dateRangeQuery);
     
-    $lineFilter = $line !== 'all' ? "AND Line = ?" : "";
+    // Thêm điều kiện lọc Line
+    $lineFilter = $line !== 'all' ? "AND Line = ?" : "AND Line IN ('L5', 'L6', 'L7', 'L8')";
     
     $sql = "SELECT ID, Date, Line, Ten_Loi, Thoi_Gian_Dung, Ghi_Chu, Created_At, Updated_At 
             FROM Downtime 

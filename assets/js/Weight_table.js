@@ -25,23 +25,23 @@ async function updateWeightTable(period) {
             
             html += `
                 <tr class="${rowClass} hover:bg-gray-100 transition-colors">
-                    <td class="px-4 py-2 border border-gray-200">${formattedTime}</td>
-                    <td class="px-4 py-2 border border-gray-200">${row.L5_sp || ''}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L5_chuan.toFixed(2)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L5_TLTB.toFixed(2)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L5_chenh_lech.toFixed(2)}</td>
-                    <td class="px-4 py-2 border border-gray-200">${row.L6_sp || ''}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L6_chuan.toFixed(2)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L6_TLTB.toFixed(2)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L6_chenh_lech.toFixed(2)}</td>
-                    <td class="px-4 py-2 border border-gray-200">${row.L7_sp || ''}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L7_chuan.toFixed(2)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L7_TLTB.toFixed(2)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L7_chenh_lech.toFixed(2)}</td>
-                    <td class="px-4 py-2 border border-gray-200">${row.L8_sp || ''}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L8_chuan.toFixed(2)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L8_TLTB.toFixed(2)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L8_chenh_lech.toFixed(2)}</td>
+                    <td class="px-2 py-2 border border-gray-200">${formattedTime}</td>
+                    <td class="px-2 py-2 border border-gray-200">${row.L5_sp || ''}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L5_chuan.toFixed(2)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L5_TLTB.toFixed(2)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L5_chenh_lech.toFixed(2)}</td>
+                    <td class="px-2 py-2 border border-gray-200">${row.L6_sp || ''}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L6_chuan.toFixed(2)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L6_TLTB.toFixed(2)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L6_chenh_lech.toFixed(2)}</td>
+                    <td class="px-2 py-2 border border-gray-200">${row.L7_sp || ''}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L7_chuan.toFixed(2)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L7_TLTB.toFixed(2)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L7_chenh_lech.toFixed(2)}</td>
+                    <td class="px-2 py-2 border border-gray-200">${row.L8_sp || ''}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L8_chuan.toFixed(2)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L8_TLTB.toFixed(2)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L8_chenh_lech.toFixed(2)}</td>
                 </tr>
             `;
         });

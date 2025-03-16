@@ -1,23 +1,25 @@
 <!-- Load charts in correct order -->
-    <script src="assets/js/Status_line.js?v=<?php echo time(); ?>"></script>
-    <script src="assets/js/Overview_Cards.js?v=<?php echo time(); ?>"></script>
-    <script src="assets/js/oeeByLine.js?v=<?php echo time(); ?>"></script>
-    <script src="assets/js/realtime.js?v=<?php echo time(); ?>"></script>
-    <script src="assets/js/Oee_Chart.js?v=<?php echo time(); ?>"></script>
-    <script src="assets/js/Steam_Chart.js?v=<?php echo time(); ?>"></script>
-    <script src="assets/js/steamUsageChart.js?v=<?php echo time(); ?>"></script>
-    <script src="assets/js/Weight_Chart.js?v=<?php echo time(); ?>"></script>
-    <script src="assets/js/Downtime_Chart.js?v=<?php echo time(); ?>"></script>
-    <script src="assets/js/downtime_table.js?v=<?php echo time(); ?>"></script>
-    <script src="assets/js/Power_Chart.js?v=<?php echo time(); ?>"></script>
-    <script src="assets/js/Power_Line_Chart.js?v=<?php echo time(); ?>"></script>
-    <script src="assets/js/Power_Table.js?v=<?php echo time(); ?>"></script>
-    <script src="assets/js/Steam_table.js?v=<?php echo time(); ?>"></script>
-    <script src="assets/js/Weight_table.js?v=<?php echo time(); ?>"></script>
+<script src="assets/js/Status_line.js?v=<?php echo time(); ?>"></script>
+<script src="assets/js/Overview_Cards.js?v=<?php echo time(); ?>"></script>
+<script src="assets/js/oeeByLine.js?v=<?php echo time(); ?>"></script>
+<script src="assets/js/realtime.js?v=<?php echo time(); ?>"></script>
+<script src="assets/js/Oee_Chart.js?v=<?php echo time(); ?>"></script>
+<script src="assets/js/Steam_Chart.js?v=<?php echo time(); ?>"></script>
+<script src="assets/js/steamUsageChart.js?v=<?php echo time(); ?>"></script>
+<script src="assets/js/Weight_Chart.js?v=<?php echo time(); ?>"></script>
+<script src="assets/js/Downtime_Chart.js?v=<?php echo time(); ?>"></script>
+<script src="assets/js/downtime_table.js?v=<?php echo time(); ?>"></script>
+<script src="assets/js/Power_Chart.js?v=<?php echo time(); ?>"></script>
+<script src="assets/js/Power_Line_Chart.js?v=<?php echo time(); ?>"></script>
+<script src="assets/js/Power_Table.js?v=<?php echo time(); ?>"></script>
+<script src="assets/js/Steam_table.js?v=<?php echo time(); ?>"></script>
+<script src="assets/js/Weight_table.js?v=<?php echo time(); ?>"></script>
 
-    <!-- Load main.js last -->
-        <script src="assets/js/charts.js?v=<?php echo time(); ?>"></script>
-    <script src="assets/js/Main.js?v=<?php echo time(); ?>"></script>
+
+
+<!-- Load main.js last -->
+<script src="assets/js/charts.js?v=<?php echo time(); ?>"></script>
+<script src="assets/js/Main.js?v=<?php echo time(); ?>"></script>
 <?php
 require_once 'includes/visitor_counter.php';
 $counter = new VisitorCounter();

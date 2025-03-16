@@ -322,9 +322,9 @@
     <div class="flex justify-between items-center mb-4">
         <h3 class="text-lg font-semibold">Trọng Lượng Các Line</h3>
         <div class="flex gap-2">
-    <button id="weightBtn5min" class="px-4 py-2 bg-blue-500 text-white rounded">Trend 5p</button>
-    <button id="weightBtnHour" class="px-4 py-2 bg-gray-500 text-white rounded">Trend 1h</button>
-    <button id="weightBtnShift" class="px-4 py-2 bg-gray-500 text-white rounded">Ca SX</button>
+    <button id="weightBtn5min" class="px-2 py-2 bg-blue-500 text-white rounded">Trend 5p</button>
+    <button id="weightBtnHour" class="px-2 py-2 bg-gray-500 text-white rounded">Trend 1h</button>
+    <button id="weightBtnShift" class="px-2 py-2 bg-gray-500 text-white rounded">Ca SX</button>
 </div>
     </div>
     <div class="chart-container" style="height: 350px;">
@@ -337,8 +337,8 @@
         <div class="flex justify-between items-center mb-4">
         <h3 class="text-lg font-semibold">Downtime Xưởng</h3>
         <div class="flex gap-2">
-        <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" onclick="switchChart('totalF3')">Xưởng</button>
-        <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" onclick="switchChart('byLine')">Line</button>
+        <button class="px-2 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" onclick="switchChart('totalF3')">Xưởng</button>
+        <button class="px-2 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" onclick="switchChart('byLine')">Line</button>
 </div>
     </div>
     <div class="chart-container" style="height: 390px;">
@@ -361,14 +361,14 @@
         <table class="min-w-full">
             <thead class="table-header sticky top-0 bg-[#4472C4]">
     <tr>
-        <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Thời gian</th>
-        <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Line</th>
+        <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">Thời gian</th>
+        <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">Line</th>
         <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Tên lỗi</th>
-        <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Thời gian dừng</th>
-        <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Ghi chú</th>
-        <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Bắt đầu</th>
-        <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Kết thúc</th>
-       <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Action</th>
+        <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">Thời gian dừng</th>
+        <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">Ghi chú</th>
+        <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">Bắt đầu</th>
+        <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">Kết thúc</th>
+       <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">Action</th>
     </tr>
 </thead>
             <tbody id="downtimeTableContent">
@@ -410,20 +410,20 @@
         <table class="min-w-full">
             <thead class="table-header sticky top-0 bg-[#4472C4]">
                 <tr>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Time</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Thông gió CS</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">VP_F3</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">MNK</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">AHU</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Kansui</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L5</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L6</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L7</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L8</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Phở_1</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Phở_2</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Kho</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Tổng</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">Time</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">TG-CS</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">VP_F3</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">MNK</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">AHU</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">Kansui</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L5</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L6</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L7</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L8</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">Phở_1</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">Phở_2</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">Kho</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">Tổng</th>
                 </tr>
             </thead>
             <tbody id="powerTableContent">
@@ -473,23 +473,23 @@
         <table class="min-w-full">
             <thead class="table-header sticky top-0 bg-[#4472C4]">
                 <tr>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">Time</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L5_Tên_SP</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L5_TLChuẩn</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L5_TLTB</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L5_CL</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L6_Tên_SP</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L6_TLChuẩn</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L6_TLTB</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L6_CL</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L7_Tên_SP</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L7_TLChuẩn</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L7_TLTB</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L7_CL</th>   
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L8_Tên_SP</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L8_TLChuẩn</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L8_TLTB</th>
-                    <th class="px-4 py-2 text-left text-white border border-[#8EA9DB]">L8_CL</th>                       
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">Time</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L5_Tên_SP</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L5_TLC</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L5_TLTB</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L5_CL</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L6_Tên_SP</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L6_TLC</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L6_TLTB</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L6_CL</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L7_Tên_SP</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L7_TLC</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L7_TLTB</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L7_CL</th>   
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L8_Tên_SP</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L8_TLC</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L8_TLTB</th>
+                    <th class="px-2 py-2 text-left text-white border border-[#8EA9DB]">L8_CL</th>                       
                 </tr>
             </thead>
             <tbody id="weightTableContent">

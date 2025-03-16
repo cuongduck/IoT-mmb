@@ -23,20 +23,20 @@ async function updatePowerTable(period) {
             
             html += `
                 <tr class="${rowClass} hover:bg-gray-100 transition-colors">
-                    <td class="px-4 py-2 border border-gray-200">${formattedTime}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.thong_gio.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.van_phong.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.mnk.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.ahu_chiller.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.kansui.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.line5.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.line6.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.line7.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.line8.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.pho1.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.pho2.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.kho.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right font-bold">${row.total.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200">${formattedTime}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.thong_gio.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.van_phong.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.mnk.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.ahu_chiller.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.kansui.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.line5.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.line6.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.line7.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.line8.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.pho1.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.pho2.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.kho.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right font-bold">${row.total.toFixed(1)}</td>
                 </tr>
             `;
         });

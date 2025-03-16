@@ -9,25 +9,39 @@ try {
     $originalDateRangeQuery = getDateRangeQuery($period);
     $dateRangeQuery = str_replace('Time', 'Date', $originalDateRangeQuery);
 
-    // Query chính cho total F3
+    // Query chính cho total F3 (chỉ lấy dữ liệu cho các Line L5, L6, L7, L8)
     $mainQuery = "SELECT 
         Ten_Loi as ErrorName,
         SUM(Thoi_Gian_Dung) as Duration,
         GROUP_CONCAT(Ghi_Chu SEPARATOR '; ') as Details
     FROM Downtime 
     $dateRangeQuery
+    AND Line IN ('L5', 'L6', 'L7', 'L8')
     GROUP BY Ten_Loi
     ORDER BY Duration DESC";
 
-    // Query phụ để lấy thông tin line
-    $lineQuery = "SELECT 
-        Line,
-        COUNT(*) as StopCount,
-        SUM(Thoi_Gian_Dung) as TotalDuration
-    FROM Downtime 
-    $dateRangeQuery
-    GROUP BY Line
-    ORDER BY Line";
+    // Query phụ để lấy thông tin line (chỉ lấy dữ liệu cho các Line L5, L6, L7, L8)
+    if (strpos($dateRangeQuery, 'WHERE') !== false) {
+        $lineQuery = "SELECT 
+            Line,
+            COUNT(*) as StopCount,
+            SUM(Thoi_Gian_Dung) as TotalDuration
+        FROM Downtime 
+        $dateRangeQuery
+        AND Line IN ('L5', 'L6', 'L7', 'L8')
+        GROUP BY Line
+        ORDER BY Line";
+    } else {
+        $lineQuery = "SELECT 
+            Line,
+            COUNT(*) as StopCount,
+            SUM(Thoi_Gian_Dung) as TotalDuration
+        FROM Downtime 
+        $dateRangeQuery
+        WHERE Line IN ('L5', 'L6', 'L7', 'L8')
+        GROUP BY Line
+        ORDER BY Line";
+    }
 
     $mainResult = $conn->query($mainQuery);
     $lineResult = $conn->query($lineQuery);
@@ -42,11 +56,22 @@ try {
     ];
 
     // Xử lý data cho total F3
+    $totalDuration = 0; // Khởi tạo tổng thời gian dừng
     while ($row = $mainResult->fetch_assoc()) {
+        $totalDuration += floatval($row['Duration']);
         $data['totalF3'][] = [
             'name' => $row['ErrorName'],
             'value' => floatval($row['Duration']),
             'details' => $row['Details']
+        ];
+    }
+
+    // Nếu không có dữ liệu, đặt totalF3 thành 0
+    if (empty($data['totalF3'])) {
+        $data['totalF3'][] = [
+            'name' => '',
+            'value' => 0,
+            'details' => ''
         ];
     }
 
