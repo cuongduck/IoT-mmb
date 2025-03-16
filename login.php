@@ -10,6 +10,13 @@ session_start([
 ]);
 
 if (isLoggedIn()) {
+    // Kiểm tra nếu username là "Tv_F2" thì redirect tới trang tv.php
+    if (isset($_SESSION['username']) && $_SESSION['username'] === 'Tv_F2') {
+        header('Location: tv.php');
+        exit();
+    }
+    
+    // Nếu không, redirect đến trang index.php như thông thường
     header('Location: index.php');
     exit();
 }
@@ -47,7 +54,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     error_log("Remember me set: " . ($rememberSuccess ? 'Success' : 'Failed') . " for user " . $user['username']);
                 }
                 
-                header('Location: index.php');
+                // Chuyển hướng dựa trên username
+                if ($user['username'] === 'Tv_F2') {
+                    header('Location: tv.php');
+                } else {
+                    header('Location: index.php');
+                }
                 exit();
             } else {
                 $error = 'Mật khẩu không đúng';

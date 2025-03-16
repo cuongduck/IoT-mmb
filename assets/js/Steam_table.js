@@ -26,21 +26,21 @@ async function updateSteamTable(period) {
             
             html += `
                 <tr class="${rowClass} hover:bg-gray-100 transition-colors">
-                    <td class="px-4 py-2 border border-gray-200">${formattedTime}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L1_Hap.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L1_Chien.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L2_Hap.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L2_Chien.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L3_Hap.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L3_Chien.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L5_Hap.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L5_Chien.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L6_Hap.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.L6_Chien.toFixed(1)}</td>                    
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.F2_triviet.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right">${row.Mam.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right font-bold">${row.Tong_F2.toFixed(1)}</td>
-                    <td class="px-4 py-2 border border-gray-200 text-right font-bold ${row.cl_F2 < 0 ? 'text-green-500' : 'text-red-500'}">${row.cl_F2.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200">${formattedTime}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L1_Hap.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L1_Chien.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L2_Hap.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L2_Chien.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L3_Hap.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L3_Chien.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L5_Hap.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L5_Chien.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L6_Hap.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.L6_Chien.toFixed(1)}</td>                    
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.F2_triviet.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right">${row.Mam.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right font-bold">${row.Tong_F2.toFixed(1)}</td>
+                    <td class="px-2 py-2 border border-gray-200 text-right font-bold ${row.cl_F2 < 0 ? 'text-green-500' : 'text-red-500'}">${row.cl_F2.toFixed(1)}</td>
                 </tr>
             `;
         });
@@ -48,21 +48,21 @@ async function updateSteamTable(period) {
         // Thêm hàng tổng hợp
         html += `
             <tr class="bg-blue-50 font-bold sticky bottom-0">
-                <td class="px-4 py-2 border border-gray-200">Trung Bình: </td>
-                <td class="px-4 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L1_Hap).toFixed(1)}</td>
-                <td class="px-4 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L1_Chien).toFixed(1)}</td>
-                <td class="px-4 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L2_Hap).toFixed(1)}</td>
-                <td class="px-4 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L2_Chien).toFixed(1)}</td>
-                <td class="px-4 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L3_Hap).toFixed(1)}</td>
-                <td class="px-4 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L3_Chien).toFixed(1)}</td>
-                <td class="px-4 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L5_Hap).toFixed(1)}</td>
-                <td class="px-4 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L5_Chien).toFixed(1)}</td>
-                <td class="px-4 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L6_Hap).toFixed(1)}</td>
-                <td class="px-4 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L6_Chien).toFixed(1)}</td>
-                <td class="px-4 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_F2_triviet).toFixed(1)}</td>
-                <td class="px-4 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_Mam).toFixed(1)}</td>
-                <td class="px-4 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_Tong_F2).toFixed(1)}</td>
-                <td class="px-4 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_cl_F2).toFixed(1)}</td>
+                <td class="px-2 py-2 border border-gray-200">TB: </td>
+                <td class="px-2 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L1_Hap).toFixed(1)}</td>
+                <td class="px-2 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L1_Chien).toFixed(1)}</td>
+                <td class="px-2 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L2_Hap).toFixed(1)}</td>
+                <td class="px-2 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L2_Chien).toFixed(1)}</td>
+                <td class="px-2 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L3_Hap).toFixed(1)}</td>
+                <td class="px-2 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L3_Chien).toFixed(1)}</td>
+                <td class="px-2 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L5_Hap).toFixed(1)}</td>
+                <td class="px-2 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L5_Chien).toFixed(1)}</td>
+                <td class="px-2 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L6_Hap).toFixed(1)}</td>
+                <td class="px-2 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_L6_Chien).toFixed(1)}</td>
+                <td class="px-2 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_F2_triviet).toFixed(1)}</td>
+                <td class="px-2 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_Mam).toFixed(1)}</td>
+                <td class="px-2 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_Tong_F2).toFixed(1)}</td>
+                <td class="px-2 py-2 border border-gray-200 text-right">${parseFloat(averages.avg_cl_F2).toFixed(1)}</td>
             </tr>
         `;
         
