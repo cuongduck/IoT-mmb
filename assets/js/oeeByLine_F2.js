@@ -1,36 +1,24 @@
-let oeeChartF2 = null;
+let oeeByLineChartF2 = null;
 
-async function updateOEEChartF2(period) {
+async function updateOEEByLineChartF2(period) {
     try {
-        const response = await fetch(`api/get_oee_data_f2.php?period=${period}`);
+        const response = await fetch(`api/get_oee_by_line_f2.php?period=${period}`);
         const data = await response.json();
         
         // Tạo dữ liệu target line (89%)
-        const targetData = new Array(data.dates.length).fill(89);
-
-        // Tính toán độ rộng của bar dựa trên period
-        const getBarThickness = (period) => {
-            switch(period) {
-                case 'today': return 25;
-                case 'yesterday': return 40;
-                case 'week': return 30;
-                case 'last_week': return 30;
-                case 'month': return 40;
-                default: return 25;
-            }
-        };
+        const targetData = new Array(data.lines.length).fill(89);
 
         // Xóa chart cũ nếu tồn tại
-        if (oeeChartF2) {
-            oeeChartF2.destroy();
+        if (oeeByLineChartF2) {
+            oeeByLineChartF2.destroy();
         }
 
         // Tạo chart mới
-        const ctx = document.getElementById('oeeChartF2').getContext('2d');
-        oeeChartF2 = new Chart(ctx, {
+        const ctx = document.getElementById('oeeByLineChartF2').getContext('2d');
+        oeeByLineChartF2 = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: data.dates,
+                labels: data.lines,
                 datasets: [
                     {
                         label: 'OEE (%)',
@@ -42,7 +30,7 @@ async function updateOEEChartF2(period) {
                             value >= 89 ? 'rgb(54, 162, 235)' : 'rgb(255, 68, 68)'
                         ),
                         borderWidth: 1,
-                        barThickness: getBarThickness(period),
+                        barThickness: 40,
                         order: 2,
                         borderRadius: 4
                     },
@@ -54,7 +42,10 @@ async function updateOEEChartF2(period) {
                         borderWidth: 2,
                         pointRadius: 0,
                         fill: false,
-                        order: 1
+                        order: 1,
+                        datalabels: {
+                            display: false
+                        }
                     }
                 ]
             },
@@ -67,7 +58,8 @@ async function updateOEEChartF2(period) {
                         max: 100,
                         grid: {
                             color: 'rgba(0, 0, 0, 0.1)',
-                            drawBorder: false
+                            drawBorder: false,
+                            drawTicks: true
                         },
                         ticks: {
                             callback: function(value) {
@@ -84,8 +76,6 @@ async function updateOEEChartF2(period) {
                             drawBorder: false
                         },
                         ticks: {
-                            maxRotation: period === 'today' ? 45 : 0,
-                            minRotation: period === 'today' ? 45 : 0,
                             font: {
                                 size: 11
                             }
@@ -140,14 +130,14 @@ async function updateOEEChartF2(period) {
             plugins: [ChartDataLabels]
         });
 
-        console.log('OEE chart F2 updated successfully');
+        console.log('OEE by Line F2 chart updated successfully');
     } catch (error) {
-        console.error('Error updating OEE chart F2:', error);
+        console.error('Error updating OEE by Line F2 chart:', error);
     }
 }
 
 // Khởi tạo chart
-function initOEEChartF2() {
-    console.log('Initializing OEE chart F2...');
-    updateOEEChartF2('today');
+function initOEEByLineChartF2() {
+    console.log('Initializing OEE by Line F2 chart...');
+    updateOEEByLineChartF2('today');
 }
